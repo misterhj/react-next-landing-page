@@ -29,4 +29,3 @@ export const useCategories = () => {
     isCreatingCategory: createCategoryMutation.isPending,
   };
 };
-
