@@ -46,6 +46,7 @@ export default function AdminLayout({
 
     const menuItems = [
         { name: 'Dashboard', href: '/admin/dashboard', icon: LayoutDashboard },
+        { name: 'Categorias', href: '/admin/categories', icon: ShoppingBag },
         { name: 'Productos', href: '/admin/products', icon: ShoppingBag },
         { name: 'Clientes', href: '/admin/customers', icon: Users },
         { name: 'Configuración', href: '/admin/settings', icon: Settings },
