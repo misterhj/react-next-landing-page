@@ -1,0 +1,28 @@
+//ruta src/app/layout.tsx[cite: 2]
+import type { Metadata } from 'next';
+import { Inter } from 'next/font/google'; 
+import './globals.css';
+import AppProviders from '@/app/providers'; // O '@/providers' según donde lo moviste[cite: 2]
+
+const inter = Inter({ subsets: ['latin'] });
+
+export const metadata: Metadata = {
+  title: 'CASE ZONE',
+  description: 'La mejor tienda de fundas para tu celular',
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="es" className="h-full" suppressHydrationWarning>
+      <body className={`${inter.className} h-full`} suppressHydrationWarning>
+        <AppProviders>
+          {children}
+        </AppProviders>
+      </body>
+    </html>
+  );
+}
