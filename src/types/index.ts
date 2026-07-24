@@ -29,3 +29,20 @@ export interface Product {
   category?: Category;
   categoryId?: number; // Útil para cuando enviamos formularios de creación
 }
+
+// DTOs para Auth
+export interface LoginRequest {
+	username: string;
+	password: string;
+}
+
+export interface RegisterRequest {
+	username: string;
+	email: string;
+	password: string;
+}
+
+export interface AuthResponse {
+	token: string;
+	message?: string;
+}

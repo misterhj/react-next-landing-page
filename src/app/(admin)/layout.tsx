@@ -28,13 +28,14 @@ export default function AdminLayout({
     const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
     // Si estamos en el login, renderizamos una estructura HTML limpia pero con Tailwind
-    if (pathname === '/admin/login') {
+    if (
+            pathname === '/admin/login'
+        || pathname === '/admin/register'
+    ) {
         return (
-            <html lang="es" className="h-full bg-slate-950">
-                <body className="h-full m-0">
-                    {children}
-                </body>
-            </html>
+            <div className="min-h-screen w-full bg-slate-950 flex items-center justify-center">
+                {children}
+            </div>
         );
     }
 
