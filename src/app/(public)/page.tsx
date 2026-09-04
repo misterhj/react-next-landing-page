@@ -1,30 +1,17 @@
-// Ruta: src/app/page.tsx
+// Ruta: src/app/(public)/page.tsx
 'use client';
 
-import React, { useState } from 'react';
-import Navbar from '@/components/Navbar';
-import ProductGrid from '@/components/ProductGrid';
+import React from 'react';
+import CatalogNavbar from '@/components/catalog/CatalogNavbar';
+import CatalogProducts from '@/components/catalog/CatalogProducts';
 
 export default function HomePage() {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
-
   return (
-    // 🟢 Cambiado a fondo claro para que resalte la cabecera oscura
-    <div className="min-h-screen bg-neutral-50">
-      <Navbar 
-        searchTerm={searchTerm} 
-        setSearchTerm={setSearchTerm} 
-        selectedCategory={selectedCategory} 
-        setSelectedCategory={setSelectedCategory} 
-      />
-
-      <main>
-        <ProductGrid 
-          searchTerm={searchTerm} 
-          selectedCategory={selectedCategory} 
-        />
+    <>
+      <CatalogNavbar />
+      <main className="flex-1 pt-32 sm:pt-36 lg:pt-24">
+        <CatalogProducts />
       </main>
-    </div>
+    </>
   );
 }

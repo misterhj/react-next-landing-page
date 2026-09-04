@@ -2,13 +2,13 @@ import { api } from '@/api/apiInstance';
 import { Product } from '@/types';
 
 export const productService = {
-  // 1. Obtener todos los productos (público)
+  // 1. Obtener todos los productos
   getAll: async (): Promise<Product[]> => {
     const { data } = await api.get<Product[]>('/products');
     return data;
   },
 
-  // 2. Obtener un producto por su ID (público)
+  // 2. Obtener un producto por su ID
   getById: async (id: number): Promise<Product> => {
     const { data } = await api.get<Product>(`/products/${id}`);
     return data;

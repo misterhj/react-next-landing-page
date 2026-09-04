@@ -1,10 +1,31 @@
 // Ruta: src/app/(admin)/login/page.tsx
 'use client';
 
-import React, { useState } from 'react';
+import React, { Suspense, useState } from 'react';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import { Eye, EyeOff, LogIn } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
+
+function RegisteredBanner() {
+	const searchParams = useSearchParams();
+	if (searchParams?.get('registered') !== 'true') return null;
+
+	const msg = searchParams?.get('msg');
+
+	return (
+		<div className="fixed top-4 right-4 z-50 flex items-center gap-3 p-4 bg-emerald-600 rounded-lg shadow-2xl border border-emerald-500 text-white">
+			<div>
+				<p className="text-sm font-semibold">Registro exitoso</p>
+				{msg ? (
+					<p className="text-xs text-emerald-100">{decodeURIComponent(msg)}</p>
+				) : (
+					<p className="text-xs text-emerald-100">Tu cuenta fue creada. Inicia sesión para continuar.</p>
+				)}
+			</div>
+		</div>
+	);
+}
 
 export default function LoginPage() {
 	const [username, setUsername] = useState('');
@@ -21,6 +42,9 @@ export default function LoginPage() {
 	return (
 		<div className="flex min-h-screen items-center justify-center bg-slate-950 px-4 py-12 sm:px-6 lg:px-8">
 			<div className="w-full max-w-md space-y-8 bg-slate-900 p-8 rounded-2xl shadow-xl border border-slate-800">
+				<Suspense fallback={null}>
+					<RegisteredBanner />
+				</Suspense>
 				<div>
 					<div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-600/10 text-emerald-500 border border-emerald-500/20">
 						<LogIn size={24} />

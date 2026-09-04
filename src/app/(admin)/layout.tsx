@@ -67,7 +67,7 @@ export default function AdminLayout({
                         <div className="w-8 h-8 rounded-lg bg-emerald-600 flex items-center justify-center font-bold text-white">
                             C
                         </div>
-                        <span className="font-bold text-lg tracking-wider text-white">CASE ZONE</span>
+                        <span className="font-bold text-lg tracking-wider text-white">Cute Store</span>
                     </div>
                     <button 
                         onClick={() => setIsSidebarOpen(false)} 
@@ -148,7 +148,7 @@ export default function AdminLayout({
                             </div>
                             <div className="hidden md:block">
                                 <p className="text-xs font-semibold text-white">Administrador</p>
-                                <p className="text-[10px] text-slate-400">admin@casezone.com</p>
+                                <p className="text-[10px] text-slate-400">admin@cutestore.com</p>
                             </div>
                         </div>
                     </div>

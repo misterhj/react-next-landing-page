@@ -32,7 +32,9 @@ export function useAuth() {
 		setError(null);
 		try {
 			const data = await authService.register(credentials);
-			handleAuthSuccess(data.token);
+			const msg = data?.message ? encodeURIComponent(data.message) : '';
+			router.push(`/admin/login?registered=true&msg=${msg}`);
+			router.refresh();
 		} catch (err: any) {
 			setError(err.message || 'Error al registrar cuenta');
 		} finally {

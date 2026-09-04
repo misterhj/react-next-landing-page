@@ -6,8 +6,8 @@ import AppProviders from '@/app/providers'; // O '@/providers' según donde lo m
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'CASE ZONE',
-  description: 'La mejor tienda de fundas para tu celular',
+  title: 'Cute Store',
+  description: 'Cute Store',
 };
 
 export default function RootLayout({
