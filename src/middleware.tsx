@@ -7,22 +7,13 @@ export function middleware(request: NextRequest) {
 	const token = request.cookies.get('admin-token')?.value;
 	const { pathname } = request.nextUrl;
 
-	// Definimos las rutas públicas del panel que no requieren estar autenticado
-	const isPublicAdminRoute = pathname === '/admin/login' || pathname === '/admin/register';
-
-	// Si intenta acceder a rutas de administración que NO son públicas y NO tiene token
-	if (pathname.startsWith('/admin') && !isPublicAdminRoute) {
+	// Si intenta acceder a rutas de administración y NO tiene token
+	if (pathname.startsWith('/admin')) {
 		if (!token) {
-			// Redirigir al login
-			const loginUrl = new URL('/admin/login', request.url);
+			// Redirigir al login público
+			const loginUrl = new URL('/login', request.url);
 			return NextResponse.redirect(loginUrl);
 		}
-	}
-
-	// Si ya tiene token e intenta ir al login o al registro, lo mandamos al dashboard
-	if (isPublicAdminRoute && token) {
-		const dashboardUrl = new URL('/admin/dashboard', request.url);
-		return NextResponse.redirect(dashboardUrl);
 	}
 
 	return NextResponse.next();

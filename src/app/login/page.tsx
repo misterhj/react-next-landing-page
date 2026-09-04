@@ -1,4 +1,4 @@
-// Ruta: src/app/(admin)/login/page.tsx
+// Ruta: src/app/login/page.tsx
 'use client';
 
 import React, { Suspense, useState } from 'react';
@@ -7,24 +7,37 @@ import { useSearchParams } from 'next/navigation';
 import { Eye, EyeOff, LogIn } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
 
-function RegisteredBanner() {
+function AuthBanner() {
 	const searchParams = useSearchParams();
-	if (searchParams?.get('registered') !== 'true') return null;
 
-	const msg = searchParams?.get('msg');
-
-	return (
-		<div className="fixed top-4 right-4 z-50 flex items-center gap-3 p-4 bg-emerald-600 rounded-lg shadow-2xl border border-emerald-500 text-white">
-			<div>
-				<p className="text-sm font-semibold">Registro exitoso</p>
-				{msg ? (
-					<p className="text-xs text-emerald-100">{decodeURIComponent(msg)}</p>
-				) : (
-					<p className="text-xs text-emerald-100">Tu cuenta fue creada. Inicia sesión para continuar.</p>
-				)}
+	if (searchParams?.get('registered') === 'true') {
+		const msg = searchParams?.get('msg');
+		return (
+			<div className="fixed top-4 right-4 z-50 flex items-center gap-3 p-4 bg-emerald-600 rounded-lg shadow-2xl border border-emerald-500 text-white">
+				<div>
+					<p className="text-sm font-semibold">Registro exitoso</p>
+					{msg ? (
+						<p className="text-xs text-emerald-100">{decodeURIComponent(msg)}</p>
+					) : (
+						<p className="text-xs text-emerald-100">Tu cuenta fue creada. Inicia sesión para continuar.</p>
+					)}
+				</div>
 			</div>
-		</div>
-	);
+		);
+	}
+
+	if (searchParams?.get('confirmed') === 'true') {
+		return (
+			<div className="fixed top-4 right-4 z-50 flex items-center gap-3 p-4 bg-emerald-600 rounded-lg shadow-2xl border border-emerald-500 text-white">
+				<div>
+					<p className="text-sm font-semibold">Cuenta confirmada</p>
+					<p className="text-xs text-emerald-100">Tu cuenta fue verificada. Ya puedes iniciar sesión.</p>
+				</div>
+			</div>
+		);
+	}
+
+	return null;
 }
 
 export default function LoginPage() {
@@ -43,7 +56,7 @@ export default function LoginPage() {
 		<div className="flex min-h-screen items-center justify-center bg-slate-950 px-4 py-12 sm:px-6 lg:px-8">
 			<div className="w-full max-w-md space-y-8 bg-slate-900 p-8 rounded-2xl shadow-xl border border-slate-800">
 				<Suspense fallback={null}>
-					<RegisteredBanner />
+					<AuthBanner />
 				</Suspense>
 				<div>
 					<div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-600/10 text-emerald-500 border border-emerald-500/20">
@@ -111,7 +124,7 @@ export default function LoginPage() {
 					</div>
 
 					<div className="text-center text-sm">
-						<Link href="/admin/register" className="text-slate-400 hover:text-emerald-400 transition-colors">
+						<Link href="/register" className="text-slate-400 hover:text-emerald-400 transition-colors">
 							¿No tienes cuenta? Regístrate aquí
 						</Link>
 					</div>

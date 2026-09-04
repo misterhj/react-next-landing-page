@@ -1,4 +1,4 @@
-// Ruta: src/app/(admin)/register/page.tsx
+// Ruta: src/app/register/page.tsx
 'use client';
 
 import React, { useState } from 'react';
@@ -281,7 +281,7 @@ export default function RegisterPage() {
 					</div>
 
 					<div className="text-center text-sm">
-						<Link href="/admin/login" className="text-slate-400 hover:text-emerald-400 transition-colors">
+						<Link href="/login" className="text-slate-400 hover:text-emerald-400 transition-colors">
 							¿Ya tienes cuenta? Inicia sesión aquí
 						</Link>
 					</div>

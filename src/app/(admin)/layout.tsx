@@ -27,21 +27,9 @@ export default function AdminLayout({
     const router = useRouter();
     const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
-    // Si estamos en el login, renderizamos una estructura HTML limpia pero con Tailwind
-    if (
-            pathname === '/admin/login'
-        || pathname === '/admin/register'
-    ) {
-        return (
-            <div className="min-h-screen w-full bg-slate-950 flex items-center justify-center">
-                {children}
-            </div>
-        );
-    }
-
     const handleLogout = () => {
         document.cookie = "admin-token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
-        router.push('/admin/login');
+        router.push('/login');
         router.refresh();
     };
 
